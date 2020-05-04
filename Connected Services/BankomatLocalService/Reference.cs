@@ -9,299 +9,483 @@
 //------------------------------------------------------------------------------
 
 namespace BankomatClient.BankomatLocalService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Cards", Namespace="http://tempuri.org/")]
-    [System.SerializableAttribute()]
-    public partial class Cards : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private long IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CardNumberField;
-        
-        private long PinField;
-        
-        private long CardStatusField;
-        
-        private bool IsBlockedField;
-        
-        private System.DateTime DateOfEndUsingField;
-        
-        private long ClientIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private BankomatClient.BankomatLocalService.Clients ClientsField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public string CardNumber {
-            get {
-                return this.CardNumberField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CardNumberField, value) != true)) {
-                    this.CardNumberField = value;
-                    this.RaisePropertyChanged("CardNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
-        public long Pin {
-            get {
-                return this.PinField;
-            }
-            set {
-                if ((this.PinField.Equals(value) != true)) {
-                    this.PinField = value;
-                    this.RaisePropertyChanged("Pin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
-        public long CardStatus {
-            get {
-                return this.CardStatusField;
-            }
-            set {
-                if ((this.CardStatusField.Equals(value) != true)) {
-                    this.CardStatusField = value;
-                    this.RaisePropertyChanged("CardStatus");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
-        public bool IsBlocked {
-            get {
-                return this.IsBlockedField;
-            }
-            set {
-                if ((this.IsBlockedField.Equals(value) != true)) {
-                    this.IsBlockedField = value;
-                    this.RaisePropertyChanged("IsBlocked");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public System.DateTime DateOfEndUsing {
-            get {
-                return this.DateOfEndUsingField;
-            }
-            set {
-                if ((this.DateOfEndUsingField.Equals(value) != true)) {
-                    this.DateOfEndUsingField = value;
-                    this.RaisePropertyChanged("DateOfEndUsing");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=6)]
-        public long ClientId {
-            get {
-                return this.ClientIdField;
-            }
-            set {
-                if ((this.ClientIdField.Equals(value) != true)) {
-                    this.ClientIdField = value;
-                    this.RaisePropertyChanged("ClientId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
-        public BankomatClient.BankomatLocalService.Clients Clients {
-            get {
-                return this.ClientsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ClientsField, value) != true)) {
-                    this.ClientsField = value;
-                    this.RaisePropertyChanged("Clients");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Clients", Namespace="http://tempuri.org/")]
-    [System.SerializableAttribute()]
-    public partial class Clients : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        private long IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public long Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="BankomatLocalService.BankomatServiceSoap")]
     public interface BankomatServiceSoap {
         
-        // CODEGEN: Generating message contract since element name cardNumber from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckCardNumber", ReplyAction="*")]
-        BankomatClient.BankomatLocalService.CheckCardNumberResponse CheckCardNumber(BankomatClient.BankomatLocalService.CheckCardNumberRequest request);
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        BankomatClient.BankomatLocalService.BaseCard CheckCardNumber(string cardNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckCardNumber", ReplyAction="*")]
-        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.CheckCardNumberResponse> CheckCardNumberAsync(BankomatClient.BankomatLocalService.CheckCardNumberRequest request);
+        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCard> CheckCardNumberAsync(string cardNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCardsByClientId", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        BankomatClient.BankomatLocalService.BaseCard[] GetCardsByClientId(long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCardsByClientId", ReplyAction="*")]
+        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCard[]> GetCardsByClientIdAsync(long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetPhoneNumber", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        bool SetPhoneNumber(string phoneNumber, long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SetPhoneNumber", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> SetPhoneNumberAsync(string phoneNumber, long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckPhoneKey", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        bool CheckPhoneKey(long clientId, long key);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckPhoneKey", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> CheckPhoneKeyAsync(long clientId, long key);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetBankPhoneNumber", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetBankPhoneNumber(long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetBankPhoneNumber", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> GetBankPhoneNumberAsync(long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TestPhones", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        BankomatClient.BankomatLocalService.Phones TestPhones(string phone);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/TestPhones", ReplyAction="*")]
+        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.Phones> TestPhonesAsync(string phone);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetGardStatus", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        BankomatClient.BankomatLocalService.CardsStatuses GetGardStatus();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetGardStatus", ReplyAction="*")]
+        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.CardsStatuses> GetGardStatusAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PutMoneyOnTheCard", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        bool PutMoneyOnTheCard(string cardNumber, double sum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/PutMoneyOnTheCard", ReplyAction="*")]
+        System.Threading.Tasks.Task<bool> PutMoneyOnTheCardAsync(string cardNumber, double sum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetClientById", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        BankomatClient.BankomatLocalService.Clients GetClientById(long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetClientById", ReplyAction="*")]
+        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.Clients> GetClientByIdAsync(long clientId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckCardPin", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        BankomatClient.BankomatLocalService.BaseCard CheckCardPin(string cardNumber, long pin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckCardPin", ReplyAction="*")]
+        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCard> CheckCardPinAsync(string cardNumber, long pin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetMoneyFromCard", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetMoneyFromCard(string cardNumber, long pin, double gettingSum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetMoneyFromCard", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> GetMoneyFromCardAsync(string cardNumber, long pin, double gettingSum);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMoneyToOtherCard", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string SendMoneyToOtherCard(string cardNumber, long pin, double gettingSum, string toCardNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/SendMoneyToOtherCard", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> SendMoneyToOtherCardAsync(string cardNumber, long pin, double gettingSum, string toCardNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ChangeCardPin", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string ChangeCardPin(string cardNumber, long oldPin, long newPin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ChangeCardPin", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> ChangeCardPinAsync(string cardNumber, long oldPin, long newPin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/BlockCard", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string BlockCard(string cardNumber, long pin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/BlockCard", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> BlockCardAsync(string cardNumber, long pin);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCardsLimits", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        BankomatClient.BankomatLocalService.BaseCardsLimits GetCardsLimits();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCardsLimits", ReplyAction="*")]
+        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCardsLimits> GetCardsLimitsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNewCard", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        string GetNewCard(long clientId, BankomatClient.BankomatLocalService.CardsStatuses cardsStatuses);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetNewCard", ReplyAction="*")]
+        System.Threading.Tasks.Task<string> GetNewCardAsync(long clientId, BankomatClient.BankomatLocalService.CardsStatuses cardsStatuses);
     }
     
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(Cards))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CheckCardNumberRequest {
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public abstract partial class BaseCard : object, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckCardNumber", Namespace="http://tempuri.org/", Order=0)]
-        public BankomatClient.BankomatLocalService.CheckCardNumberRequestBody Body;
+        private long idField;
         
-        public CheckCardNumberRequest() {
+        private string cardNumberField;
+        
+        private long pinField;
+        
+        private long cardStatusField;
+        
+        private bool isBlockedField;
+        
+        private System.DateTime dateOfEndUsingField;
+        
+        private long clientIdField;
+        
+        private double balanceField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public long Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
         }
         
-        public CheckCardNumberRequest(BankomatClient.BankomatLocalService.CheckCardNumberRequestBody Body) {
-            this.Body = Body;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string CardNumber {
+            get {
+                return this.cardNumberField;
+            }
+            set {
+                this.cardNumberField = value;
+                this.RaisePropertyChanged("CardNumber");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public long Pin {
+            get {
+                return this.pinField;
+            }
+            set {
+                this.pinField = value;
+                this.RaisePropertyChanged("Pin");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public long CardStatus {
+            get {
+                return this.cardStatusField;
+            }
+            set {
+                this.cardStatusField = value;
+                this.RaisePropertyChanged("CardStatus");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=4)]
+        public bool IsBlocked {
+            get {
+                return this.isBlockedField;
+            }
+            set {
+                this.isBlockedField = value;
+                this.RaisePropertyChanged("IsBlocked");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=5)]
+        public System.DateTime DateOfEndUsing {
+            get {
+                return this.dateOfEndUsingField;
+            }
+            set {
+                this.dateOfEndUsingField = value;
+                this.RaisePropertyChanged("DateOfEndUsing");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=6)]
+        public long ClientId {
+            get {
+                return this.clientIdField;
+            }
+            set {
+                this.clientIdField = value;
+                this.RaisePropertyChanged("ClientId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=7)]
+        public double Balance {
+            get {
+                return this.balanceField;
+            }
+            set {
+                this.balanceField = value;
+                this.RaisePropertyChanged("Balance");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CardsLimits))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class CheckCardNumberRequestBody {
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public abstract partial class BaseCardsLimits : object, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public string cardNumber;
+        private int blackCardLimitField;
         
-        public CheckCardNumberRequestBody() {
+        private int blueCardLimitField;
+        
+        private int goldCardLimitField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public int BlackCardLimit {
+            get {
+                return this.blackCardLimitField;
+            }
+            set {
+                this.blackCardLimitField = value;
+                this.RaisePropertyChanged("BlackCardLimit");
+            }
         }
         
-        public CheckCardNumberRequestBody(string cardNumber) {
-            this.cardNumber = cardNumber;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public int BlueCardLimit {
+            get {
+                return this.blueCardLimitField;
+            }
+            set {
+                this.blueCardLimitField = value;
+                this.RaisePropertyChanged("BlueCardLimit");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public int GoldCardLimit {
+            get {
+                return this.goldCardLimitField;
+            }
+            set {
+                this.goldCardLimitField = value;
+                this.RaisePropertyChanged("GoldCardLimit");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class CheckCardNumberResponse {
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class CardsLimits : BaseCardsLimits {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Phones : object, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckCardNumberResponse", Namespace="http://tempuri.org/", Order=0)]
-        public BankomatClient.BankomatLocalService.CheckCardNumberResponseBody Body;
+        private long idField;
         
-        public CheckCardNumberResponse() {
+        private string numberField;
+        
+        private long clientIdField;
+        
+        private Clients clientsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public long Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
         }
         
-        public CheckCardNumberResponse(BankomatClient.BankomatLocalService.CheckCardNumberResponseBody Body) {
-            this.Body = Body;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Number {
+            get {
+                return this.numberField;
+            }
+            set {
+                this.numberField = value;
+                this.RaisePropertyChanged("Number");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=2)]
+        public long ClientId {
+            get {
+                return this.clientIdField;
+            }
+            set {
+                this.clientIdField = value;
+                this.RaisePropertyChanged("ClientId");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=3)]
+        public Clients Clients {
+            get {
+                return this.clientsField;
+            }
+            set {
+                this.clientsField = value;
+                this.RaisePropertyChanged("Clients");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
-    public partial class CheckCardNumberResponseBody {
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Clients : object, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
-        public BankomatClient.BankomatLocalService.Cards CheckCardNumberResult;
+        private long idField;
         
-        public CheckCardNumberResponseBody() {
+        private string nameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public long Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+                this.RaisePropertyChanged("Id");
+            }
         }
         
-        public CheckCardNumberResponseBody(BankomatClient.BankomatLocalService.Cards CheckCardNumberResult) {
-            this.CheckCardNumberResult = CheckCardNumberResult;
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string Name {
+            get {
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+                this.RaisePropertyChanged("Name");
+            }
         }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Cards : BaseCard {
+        
+        private Clients clientsField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public Clients Clients {
+            get {
+                return this.clientsField;
+            }
+            set {
+                this.clientsField = value;
+                this.RaisePropertyChanged("Clients");
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.3752.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public enum CardsStatuses {
+        
+        /// <remarks/>
+        BlackCard,
+        
+        /// <remarks/>
+        BlueCard,
+        
+        /// <remarks/>
+        GoldCard,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -331,29 +515,132 @@ namespace BankomatClient.BankomatLocalService {
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        BankomatClient.BankomatLocalService.CheckCardNumberResponse BankomatClient.BankomatLocalService.BankomatServiceSoap.CheckCardNumber(BankomatClient.BankomatLocalService.CheckCardNumberRequest request) {
-            return base.Channel.CheckCardNumber(request);
+        public BankomatClient.BankomatLocalService.BaseCard CheckCardNumber(string cardNumber) {
+            return base.Channel.CheckCardNumber(cardNumber);
         }
         
-        public BankomatClient.BankomatLocalService.Cards CheckCardNumber(string cardNumber) {
-            BankomatClient.BankomatLocalService.CheckCardNumberRequest inValue = new BankomatClient.BankomatLocalService.CheckCardNumberRequest();
-            inValue.Body = new BankomatClient.BankomatLocalService.CheckCardNumberRequestBody();
-            inValue.Body.cardNumber = cardNumber;
-            BankomatClient.BankomatLocalService.CheckCardNumberResponse retVal = ((BankomatClient.BankomatLocalService.BankomatServiceSoap)(this)).CheckCardNumber(inValue);
-            return retVal.Body.CheckCardNumberResult;
+        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCard> CheckCardNumberAsync(string cardNumber) {
+            return base.Channel.CheckCardNumberAsync(cardNumber);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.CheckCardNumberResponse> BankomatClient.BankomatLocalService.BankomatServiceSoap.CheckCardNumberAsync(BankomatClient.BankomatLocalService.CheckCardNumberRequest request) {
-            return base.Channel.CheckCardNumberAsync(request);
+        public BankomatClient.BankomatLocalService.BaseCard[] GetCardsByClientId(long clientId) {
+            return base.Channel.GetCardsByClientId(clientId);
         }
         
-        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.CheckCardNumberResponse> CheckCardNumberAsync(string cardNumber) {
-            BankomatClient.BankomatLocalService.CheckCardNumberRequest inValue = new BankomatClient.BankomatLocalService.CheckCardNumberRequest();
-            inValue.Body = new BankomatClient.BankomatLocalService.CheckCardNumberRequestBody();
-            inValue.Body.cardNumber = cardNumber;
-            return ((BankomatClient.BankomatLocalService.BankomatServiceSoap)(this)).CheckCardNumberAsync(inValue);
+        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCard[]> GetCardsByClientIdAsync(long clientId) {
+            return base.Channel.GetCardsByClientIdAsync(clientId);
+        }
+        
+        public bool SetPhoneNumber(string phoneNumber, long clientId) {
+            return base.Channel.SetPhoneNumber(phoneNumber, clientId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> SetPhoneNumberAsync(string phoneNumber, long clientId) {
+            return base.Channel.SetPhoneNumberAsync(phoneNumber, clientId);
+        }
+        
+        public bool CheckPhoneKey(long clientId, long key) {
+            return base.Channel.CheckPhoneKey(clientId, key);
+        }
+        
+        public System.Threading.Tasks.Task<bool> CheckPhoneKeyAsync(long clientId, long key) {
+            return base.Channel.CheckPhoneKeyAsync(clientId, key);
+        }
+        
+        public string GetBankPhoneNumber(long clientId) {
+            return base.Channel.GetBankPhoneNumber(clientId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetBankPhoneNumberAsync(long clientId) {
+            return base.Channel.GetBankPhoneNumberAsync(clientId);
+        }
+        
+        public BankomatClient.BankomatLocalService.Phones TestPhones(string phone) {
+            return base.Channel.TestPhones(phone);
+        }
+        
+        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.Phones> TestPhonesAsync(string phone) {
+            return base.Channel.TestPhonesAsync(phone);
+        }
+        
+        public BankomatClient.BankomatLocalService.CardsStatuses GetGardStatus() {
+            return base.Channel.GetGardStatus();
+        }
+        
+        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.CardsStatuses> GetGardStatusAsync() {
+            return base.Channel.GetGardStatusAsync();
+        }
+        
+        public bool PutMoneyOnTheCard(string cardNumber, double sum) {
+            return base.Channel.PutMoneyOnTheCard(cardNumber, sum);
+        }
+        
+        public System.Threading.Tasks.Task<bool> PutMoneyOnTheCardAsync(string cardNumber, double sum) {
+            return base.Channel.PutMoneyOnTheCardAsync(cardNumber, sum);
+        }
+        
+        public BankomatClient.BankomatLocalService.Clients GetClientById(long clientId) {
+            return base.Channel.GetClientById(clientId);
+        }
+        
+        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.Clients> GetClientByIdAsync(long clientId) {
+            return base.Channel.GetClientByIdAsync(clientId);
+        }
+        
+        public BankomatClient.BankomatLocalService.BaseCard CheckCardPin(string cardNumber, long pin) {
+            return base.Channel.CheckCardPin(cardNumber, pin);
+        }
+        
+        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCard> CheckCardPinAsync(string cardNumber, long pin) {
+            return base.Channel.CheckCardPinAsync(cardNumber, pin);
+        }
+        
+        public string GetMoneyFromCard(string cardNumber, long pin, double gettingSum) {
+            return base.Channel.GetMoneyFromCard(cardNumber, pin, gettingSum);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetMoneyFromCardAsync(string cardNumber, long pin, double gettingSum) {
+            return base.Channel.GetMoneyFromCardAsync(cardNumber, pin, gettingSum);
+        }
+        
+        public string SendMoneyToOtherCard(string cardNumber, long pin, double gettingSum, string toCardNumber) {
+            return base.Channel.SendMoneyToOtherCard(cardNumber, pin, gettingSum, toCardNumber);
+        }
+        
+        public System.Threading.Tasks.Task<string> SendMoneyToOtherCardAsync(string cardNumber, long pin, double gettingSum, string toCardNumber) {
+            return base.Channel.SendMoneyToOtherCardAsync(cardNumber, pin, gettingSum, toCardNumber);
+        }
+        
+        public string ChangeCardPin(string cardNumber, long oldPin, long newPin) {
+            return base.Channel.ChangeCardPin(cardNumber, oldPin, newPin);
+        }
+        
+        public System.Threading.Tasks.Task<string> ChangeCardPinAsync(string cardNumber, long oldPin, long newPin) {
+            return base.Channel.ChangeCardPinAsync(cardNumber, oldPin, newPin);
+        }
+        
+        public string BlockCard(string cardNumber, long pin) {
+            return base.Channel.BlockCard(cardNumber, pin);
+        }
+        
+        public System.Threading.Tasks.Task<string> BlockCardAsync(string cardNumber, long pin) {
+            return base.Channel.BlockCardAsync(cardNumber, pin);
+        }
+        
+        public BankomatClient.BankomatLocalService.BaseCardsLimits GetCardsLimits() {
+            return base.Channel.GetCardsLimits();
+        }
+        
+        public System.Threading.Tasks.Task<BankomatClient.BankomatLocalService.BaseCardsLimits> GetCardsLimitsAsync() {
+            return base.Channel.GetCardsLimitsAsync();
+        }
+        
+        public string GetNewCard(long clientId, BankomatClient.BankomatLocalService.CardsStatuses cardsStatuses) {
+            return base.Channel.GetNewCard(clientId, cardsStatuses);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetNewCardAsync(long clientId, BankomatClient.BankomatLocalService.CardsStatuses cardsStatuses) {
+            return base.Channel.GetNewCardAsync(clientId, cardsStatuses);
         }
     }
 }

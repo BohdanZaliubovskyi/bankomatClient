@@ -10,7 +10,7 @@ namespace BankomatClient.Models.MyEventArgs
     /// <summary>
     /// аргументы для передачи объекта карты
     /// </summary>
-    public class CardEventArgs : EventArgs
+    public class CardEventArgs : StringEventArgs
     {
         Cards _card = null;
         /// <summary>
@@ -18,7 +18,11 @@ namespace BankomatClient.Models.MyEventArgs
         /// </summary>
         public Cards Card { get => _card; }
 
-        public CardEventArgs(Cards card)
+        public CardEventArgs(Cards card, string argument) : base(argument)
+        {
+            _card = card;
+        }
+        public CardEventArgs(Cards card) : base("")
         {
             _card = card;
         }

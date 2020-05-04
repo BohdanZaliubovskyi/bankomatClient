@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace BankomatClient
 {
+    /// <summary>
+    /// форма для отображения идущих часов во время обработки информации
+    /// </summary>
     public partial class WaitForm : Form
     {
         public WaitForm()

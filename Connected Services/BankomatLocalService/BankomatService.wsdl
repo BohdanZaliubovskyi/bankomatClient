@@ -12,11 +12,11 @@
       <s:element name="CheckCardNumberResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="CheckCardNumberResult" type="tns:Cards" />
+            <s:element minOccurs="0" maxOccurs="1" name="CheckCardNumberResult" type="tns:BaseCard" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="Cards">
+      <s:complexType name="BaseCard" abstract="true">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
           <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
@@ -25,8 +25,17 @@
           <s:element minOccurs="1" maxOccurs="1" name="IsBlocked" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="DateOfEndUsing" type="s:dateTime" />
           <s:element minOccurs="1" maxOccurs="1" name="ClientId" type="s:long" />
-          <s:element minOccurs="0" maxOccurs="1" name="Clients" type="tns:Clients" />
+          <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:double" />
         </s:sequence>
+      </s:complexType>
+      <s:complexType name="Cards">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseCard">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Clients" type="tns:Clients" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
       </s:complexType>
       <s:complexType name="Clients">
         <s:sequence>
@@ -34,6 +43,253 @@
           <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetCardsByClientId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardsByClientIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardsByClientIdResult" type="tns:ArrayOfBaseCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBaseCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BaseCard" nillable="true" type="tns:BaseCard" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetPhoneNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phoneNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetPhoneNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetPhoneNumberResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPhoneKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="key" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPhoneKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckPhoneKeyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankPhoneNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBankPhoneNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBankPhoneNumberResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestPhones">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestPhonesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestPhonesResult" type="tns:Phones" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Phones">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Number" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ClientId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clients" type="tns:Clients" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGardStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetGardStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetGardStatusResult" type="tns:CardsStatuses" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="CardsStatuses">
+        <s:restriction base="s:string">
+          <s:enumeration value="BlackCard" />
+          <s:enumeration value="BlueCard" />
+          <s:enumeration value="GoldCard" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="PutMoneyOnTheCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sum" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PutMoneyOnTheCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PutMoneyOnTheCardResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientById">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClientByIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClientByIdResult" type="tns:Clients" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCardPin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pin" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCardPinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckCardPinResult" type="tns:BaseCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMoneyFromCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pin" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="gettingSum" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMoneyFromCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMoneyFromCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMoneyToOtherCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pin" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="gettingSum" type="s:double" />
+            <s:element minOccurs="0" maxOccurs="1" name="toCardNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMoneyToOtherCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMoneyToOtherCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeCardPin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="oldPin" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="newPin" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeCardPinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeCardPinResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BlockCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="cardNumber" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="pin" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BlockCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BlockCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCardsLimits">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCardsLimitsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCardsLimitsResult" type="tns:BaseCardsLimits" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BaseCardsLimits" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BlackCardLimit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BlueCardLimit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="GoldCardLimit" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CardsLimits">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:BaseCardsLimits" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetNewCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="clientId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="cardsStatuses" type="tns:CardsStatuses" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNewCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNewCardResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="CheckCardNumberSoapIn">
@@ -42,10 +298,174 @@
   <wsdl:message name="CheckCardNumberSoapOut">
     <wsdl:part name="parameters" element="tns:CheckCardNumberResponse" />
   </wsdl:message>
+  <wsdl:message name="GetCardsByClientIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardsByClientId" />
+  </wsdl:message>
+  <wsdl:message name="GetCardsByClientIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardsByClientIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetPhoneNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:SetPhoneNumber" />
+  </wsdl:message>
+  <wsdl:message name="SetPhoneNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:SetPhoneNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckPhoneKeySoapIn">
+    <wsdl:part name="parameters" element="tns:CheckPhoneKey" />
+  </wsdl:message>
+  <wsdl:message name="CheckPhoneKeySoapOut">
+    <wsdl:part name="parameters" element="tns:CheckPhoneKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBankPhoneNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBankPhoneNumber" />
+  </wsdl:message>
+  <wsdl:message name="GetBankPhoneNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBankPhoneNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestPhonesSoapIn">
+    <wsdl:part name="parameters" element="tns:TestPhones" />
+  </wsdl:message>
+  <wsdl:message name="TestPhonesSoapOut">
+    <wsdl:part name="parameters" element="tns:TestPhonesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGardStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGardStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetGardStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGardStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="PutMoneyOnTheCardSoapIn">
+    <wsdl:part name="parameters" element="tns:PutMoneyOnTheCard" />
+  </wsdl:message>
+  <wsdl:message name="PutMoneyOnTheCardSoapOut">
+    <wsdl:part name="parameters" element="tns:PutMoneyOnTheCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClientById" />
+  </wsdl:message>
+  <wsdl:message name="GetClientByIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClientByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckCardPinSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckCardPin" />
+  </wsdl:message>
+  <wsdl:message name="CheckCardPinSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckCardPinResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMoneyFromCardSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMoneyFromCard" />
+  </wsdl:message>
+  <wsdl:message name="GetMoneyFromCardSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMoneyFromCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMoneyToOtherCardSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMoneyToOtherCard" />
+  </wsdl:message>
+  <wsdl:message name="SendMoneyToOtherCardSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMoneyToOtherCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCardPinSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeCardPin" />
+  </wsdl:message>
+  <wsdl:message name="ChangeCardPinSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeCardPinResponse" />
+  </wsdl:message>
+  <wsdl:message name="BlockCardSoapIn">
+    <wsdl:part name="parameters" element="tns:BlockCard" />
+  </wsdl:message>
+  <wsdl:message name="BlockCardSoapOut">
+    <wsdl:part name="parameters" element="tns:BlockCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCardsLimitsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCardsLimits" />
+  </wsdl:message>
+  <wsdl:message name="GetCardsLimitsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCardsLimitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNewCardSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNewCard" />
+  </wsdl:message>
+  <wsdl:message name="GetNewCardSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNewCardResponse" />
+  </wsdl:message>
   <wsdl:portType name="BankomatServiceSoap">
     <wsdl:operation name="CheckCardNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Получить объект карты по номеру карты, параметры: string cardNumber</wsdl:documentation>
       <wsdl:input message="tns:CheckCardNumberSoapIn" />
       <wsdl:output message="tns:CheckCardNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardsByClientId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Получить массив банковских карт для клиента: long clientId</wsdl:documentation>
+      <wsdl:input message="tns:GetCardsByClientIdSoapIn" />
+      <wsdl:output message="tns:GetCardsByClientIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPhoneNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Получить на сервере номер телефона для клиента, по которому надо перезвонить</wsdl:documentation>
+      <wsdl:input message="tns:SetPhoneNumberSoapIn" />
+      <wsdl:output message="tns:SetPhoneNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPhoneKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Проверить, получил ли клиент звонок на телефон, и правильно ли он ввел последние цифры</wsdl:documentation>
+      <wsdl:input message="tns:CheckPhoneKeySoapIn" />
+      <wsdl:output message="tns:CheckPhoneKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBankPhoneNumber">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Получение номера телефона, с которого звонит банк для подтверждения пользователя у банкомата</wsdl:documentation>
+      <wsdl:input message="tns:GetBankPhoneNumberSoapIn" />
+      <wsdl:output message="tns:GetBankPhoneNumberSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestPhones">
+      <wsdl:input message="tns:TestPhonesSoapIn" />
+      <wsdl:output message="tns:TestPhonesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGardStatus">
+      <wsdl:input message="tns:GetGardStatusSoapIn" />
+      <wsdl:output message="tns:GetGardStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PutMoneyOnTheCard">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">зачисление денег на карту с банкомата, параметры: string cardNumber, double sum</wsdl:documentation>
+      <wsdl:input message="tns:PutMoneyOnTheCardSoapIn" />
+      <wsdl:output message="tns:PutMoneyOnTheCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">получение клиента по идентификатору</wsdl:documentation>
+      <wsdl:input message="tns:GetClientByIdSoapIn" />
+      <wsdl:output message="tns:GetClientByIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCardPin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">проверка совпадения пина на карте</wsdl:documentation>
+      <wsdl:input message="tns:CheckCardPinSoapIn" />
+      <wsdl:output message="tns:CheckCardPinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMoneyFromCard">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Получить деньги с карты, параметры: string cardNumber, double gettingSum</wsdl:documentation>
+      <wsdl:input message="tns:GetMoneyFromCardSoapIn" />
+      <wsdl:output message="tns:GetMoneyFromCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMoneyToOtherCard">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Передача денег на другую карту, параметры: string cardNumber, double gettingSum, string toCardNumber</wsdl:documentation>
+      <wsdl:input message="tns:SendMoneyToOtherCardSoapIn" />
+      <wsdl:output message="tns:SendMoneyToOtherCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCardPin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Изменить пин-код карты, параметры: string cardNumber, double gettingSum</wsdl:documentation>
+      <wsdl:input message="tns:ChangeCardPinSoapIn" />
+      <wsdl:output message="tns:ChangeCardPinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BlockCard">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Заблокировать карту, параметры: string cardNumber, long pin</wsdl:documentation>
+      <wsdl:input message="tns:BlockCardSoapIn" />
+      <wsdl:output message="tns:BlockCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardsLimits">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Получить лимиты по картам</wsdl:documentation>
+      <wsdl:input message="tns:GetCardsLimitsSoapIn" />
+      <wsdl:output message="tns:GetCardsLimitsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewCard">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Получить новую карту для клиента, параметры: long clientId, CardsStatuses cardsStatuses</wsdl:documentation>
+      <wsdl:input message="tns:GetNewCardSoapIn" />
+      <wsdl:output message="tns:GetNewCardSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BankomatServiceSoap" type="tns:BankomatServiceSoap">
@@ -59,11 +479,281 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetCardsByClientId">
+      <soap:operation soapAction="http://tempuri.org/GetCardsByClientId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPhoneNumber">
+      <soap:operation soapAction="http://tempuri.org/SetPhoneNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPhoneKey">
+      <soap:operation soapAction="http://tempuri.org/CheckPhoneKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankPhoneNumber">
+      <soap:operation soapAction="http://tempuri.org/GetBankPhoneNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestPhones">
+      <soap:operation soapAction="http://tempuri.org/TestPhones" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGardStatus">
+      <soap:operation soapAction="http://tempuri.org/GetGardStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutMoneyOnTheCard">
+      <soap:operation soapAction="http://tempuri.org/PutMoneyOnTheCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <soap:operation soapAction="http://tempuri.org/GetClientById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCardPin">
+      <soap:operation soapAction="http://tempuri.org/CheckCardPin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMoneyFromCard">
+      <soap:operation soapAction="http://tempuri.org/GetMoneyFromCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMoneyToOtherCard">
+      <soap:operation soapAction="http://tempuri.org/SendMoneyToOtherCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCardPin">
+      <soap:operation soapAction="http://tempuri.org/ChangeCardPin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BlockCard">
+      <soap:operation soapAction="http://tempuri.org/BlockCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardsLimits">
+      <soap:operation soapAction="http://tempuri.org/GetCardsLimits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewCard">
+      <soap:operation soapAction="http://tempuri.org/GetNewCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BankomatServiceSoap12" type="tns:BankomatServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="CheckCardNumber">
       <soap12:operation soapAction="http://tempuri.org/CheckCardNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardsByClientId">
+      <soap12:operation soapAction="http://tempuri.org/GetCardsByClientId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPhoneNumber">
+      <soap12:operation soapAction="http://tempuri.org/SetPhoneNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPhoneKey">
+      <soap12:operation soapAction="http://tempuri.org/CheckPhoneKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBankPhoneNumber">
+      <soap12:operation soapAction="http://tempuri.org/GetBankPhoneNumber" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestPhones">
+      <soap12:operation soapAction="http://tempuri.org/TestPhones" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGardStatus">
+      <soap12:operation soapAction="http://tempuri.org/GetGardStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PutMoneyOnTheCard">
+      <soap12:operation soapAction="http://tempuri.org/PutMoneyOnTheCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientById">
+      <soap12:operation soapAction="http://tempuri.org/GetClientById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCardPin">
+      <soap12:operation soapAction="http://tempuri.org/CheckCardPin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMoneyFromCard">
+      <soap12:operation soapAction="http://tempuri.org/GetMoneyFromCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMoneyToOtherCard">
+      <soap12:operation soapAction="http://tempuri.org/SendMoneyToOtherCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeCardPin">
+      <soap12:operation soapAction="http://tempuri.org/ChangeCardPin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BlockCard">
+      <soap12:operation soapAction="http://tempuri.org/BlockCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardsLimits">
+      <soap12:operation soapAction="http://tempuri.org/GetCardsLimits" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewCard">
+      <soap12:operation soapAction="http://tempuri.org/GetNewCard" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

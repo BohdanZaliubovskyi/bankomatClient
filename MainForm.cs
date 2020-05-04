@@ -50,12 +50,19 @@ namespace BankomatClient
                     Controls.Clear();
                     Controls.Add(_currentView);
                 }
+                Controls.Add(buttonClose);
+                buttonClose.BringToFront();
             }
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             FormLoaded?.Invoke(this, e);
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -17,6 +17,10 @@ namespace BankomatClient.Presenters
         /// пополнить карту наличкой
         /// </summary>
         event EventHandler AddCash;
+        /// <summary>
+        /// получить новую карту
+        /// </summary>
+        event EventHandler GetCard;
     }
     class LoginPresenter : ILoginPresenter
     {
@@ -24,6 +28,7 @@ namespace BankomatClient.Presenters
 
         public event EventHandler InsertCard;
         public event EventHandler AddCash;
+        public event EventHandler GetCard;
 
         public LoginPresenter(ILoginView loginView)
         {
@@ -38,8 +43,7 @@ namespace BankomatClient.Presenters
 
         private void _loginView_GetCard(object sender, EventArgs e)
         {
-            //TODO: тут выдать карту в отдельной форме(эмуляция получения по ФИО)
-            throw new NotImplementedException();
+            GetCard?.Invoke(this, null);
         }
 
         private void _loginView_InsertingCard(object sender, EventArgs e)

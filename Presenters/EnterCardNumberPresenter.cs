@@ -1,4 +1,5 @@
 ﻿using BankomatClient.BankomatLocalService;
+using BankomatClient.Models;
 using BankomatClient.Models.MyEventArgs;
 using BankomatClient.Views;
 using System;
@@ -11,108 +12,83 @@ using System.Threading.Tasks;
 
 namespace BankomatClient.Presenters
 {
-    public interface IEnterCardNumberPresenter : IBaseControl
+    public interface IEnterCardNumberPresenter : IEnterNumberPresenter
     {
-        /// <summary>
-        /// подтверждение отправки номера карты на сервер
-        /// </summary>
-        event EventHandler Confirm;        
+
     }
-    public class EnterCardNumberPresenter : IEnterCardNumberPresenter
+    public class EnterCardNumberPresenter : BaseEnterNumberPresenter, IEnterCardNumberPresenter
     {
-        IEnterCardNumberView _enterCardNumberView;
-
-        public event EventHandler Confirm;
-        public event EventHandler ToStart;
-
-        WaitForm _waitForm;
-
-        /// <summary>
-        /// экземпляр веб интерфейса
-        /// </summary>
-        BankomatServiceSoapClient _bankomatLocalService;
-
-        public EnterCardNumberPresenter(IEnterCardNumberView enterCardNumberView)
+        public EnterCardNumberPresenter(BoolEventArgs bea, IEnterCardNumberView enterCardNumberView) :base(bea, enterCardNumberView)
         {
-            if (enterCardNumberView != null)
-            {
-                _enterCardNumberView = enterCardNumberView;
-                _enterCardNumberView.CheckCardNumber += _enterCardNumberView_CheckCardNumber;
-                _enterCardNumberView.ConfirmNumber += _enterCardNumberView_ConfirmNumber;
-                _enterCardNumberView.PressDigit += _enterCardNumberView_PressDigit;
-                _enterCardNumberView.ToStart += _enterCardNumberView_ToStart;
-                _enterCardNumberView.PressDel += _enterCardNumberView_PressDel;
-            }
-            _bankomatLocalService = new BankomatServiceSoapClient();
+            SetViewLabels("Пополнение карты", "Введите номер карты");
         }
 
-        private void _enterCardNumberView_PressDel(object sender, EventArgs e)
+        protected override void _enterNumberView_ConfirmNumber(object sender, EventArgs e)
         {
-            if (_enterCardNumberView != null)
-                _enterCardNumberView.DelDigit();
-        }
-
-        private void _enterCardNumberView_ToStart(object sender, EventArgs e)
-        {
-            ToStart?.Invoke(this, e);
-        }
-
-        private void _enterCardNumberView_PressDigit(object sender, EventArgs e)
-        {
-            DigitEventArgs dea = e as DigitEventArgs;
-            if (dea != null)
-                _enterCardNumberView.AddDigit(dea.Digit);
-        }
-
-        private void _enterCardNumberView_ConfirmNumber(object sender, EventArgs e)
-        {
-            CardNumberEventArgs card = e as CardNumberEventArgs;
+            NumberEventArgs card = e as NumberEventArgs;
             if (card != null)
-            {
-                BackgroundWorker bw = new BackgroundWorker();
-                bw.DoWork += Bw_DoWork;
-                bw.RunWorkerCompleted += Bw_RunWorkerCompleted;
-
+            {              
                 SendMessage("Подождите, идет обработка данных...");
 
                 _waitForm = new WaitForm();
                 _waitForm.Show();
-                    bw.RunWorkerAsync(card.CardNumber);
-               
+                _bw.RunWorkerAsync(card.Number);               
             }
         }
 
-        private void Bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        public override event EventHandler Confirm;
+
+        protected override void _bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
-                SendMessage("Невозможно установить связь с сервером");
+                SendMessage("Невозможно установить связь с сервером.");
             else if (e.Result == null)
-                SendMessage("Такого номера карты не существует");
+                SendMessage("Такого номера карты не существует.");
             else
             {
-                Confirm?.Invoke(this, new CardEventArgs(e.Result as Cards));
+                Cards cr = e.Result as Cards;
+                if (cr.IsBlocked)
+                    SendMessage("Карта заблокирована. Любые операции с ней запрещены.");
+                else
+                {
+                    switch (_baseViewsFunctionality)
+                    {
+                        case BaseViewsFunctionality.StartPageBaseView:
+                            Confirm?.Invoke(this, new BoolEventArgs(GetMessageAboutCurrentPage(MyPresenters.EnterCardNumberPresenter), cr, _baseViewsFunctionality));
+                            break;
+                        case BaseViewsFunctionality.PersonalAreaBaseView:
+                            Confirm?.Invoke(this, new SendingMoneyEventArgs(cr.CardNumber, GetMessageAboutCurrentPage(MyPresenters.EnterCardNumberPresenter), CurrentCard, _baseViewsFunctionality));
+                            break;
+                    }
+                }
             }
             _waitForm.Close();
         }
 
-        private void Bw_DoWork(object sender, DoWorkEventArgs e)
-        {            
-            Cards card = _bankomatLocalService.CheckCardNumber(e.Argument.ToString());
-            e.Result = card;
+        protected override void _bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BaseCard bc = _bankomatLocalService.CheckCardNumber(e.Argument.ToString());
+            if (bc != null)
+            {
+                Cards card = (Cards)bc;
+                e.Result = card;
+            }
+            else
+                e.Result = null;
         }
 
-        private void _enterCardNumberView_CheckCardNumber(object sender, EventArgs e)
+        protected override void _enterNumberView_CheckNumber(object sender, EventArgs e)
         {
-            if (_enterCardNumberView == null)
+            if (_basePersonalAreaView == null)
                 return;
 
-            CardNumberEventArgs card = e as CardNumberEventArgs;
+            NumberEventArgs card = e as NumberEventArgs;
             if (card != null)
             {
-                if (CheckCardNumber(card.CardNumber))
-                    _enterCardNumberView.ConfirmSending(card.CardNumber);
+                if (CheckNumber(card.Number))
+                    (_basePersonalAreaView as IEnterCardNumberView).ConfirmSending(card.Number);
                 else
-                    _enterCardNumberView.SendMessage("Вы ввели неправильный номер банковской карты");
+                    SendMessage("Вы ввели неправильный номер банковской карты");
             }
         }
 
@@ -121,7 +97,7 @@ namespace BankomatClient.Presenters
         /// </summary>
         /// <param name="number">проверяемый номер карты</param>
         /// <returns>true=все верно false=неправильная запись</returns>
-        bool CheckCardNumber(string number)
+        protected override bool CheckNumber(string number)
         {
             if (number == "")
                 return false;
@@ -130,12 +106,6 @@ namespace BankomatClient.Presenters
                 return false;
 
             return true;
-        }
-
-        public void SendMessage(string message)
-        {
-            if (_enterCardNumberView != null)
-                _enterCardNumberView.SendMessage(message);
         }
     }
 }

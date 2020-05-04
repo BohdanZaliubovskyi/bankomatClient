@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BankomatClient.Models.MyEventArgs
 {
     /// <summary>
-    /// аргументы для передачи номера банковской карты или номера телефона
+    /// аргументы для передачи номера (банковской карты или номера телефона, пина и т.д.)
     /// </summary>
     public class NumberEventArgs : EventArgs
     {

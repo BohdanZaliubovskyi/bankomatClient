@@ -58,12 +58,44 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MobilePhoneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MobilePhoneForm.Designer.cs">
+      <DependentUpon>MobilePhoneForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BaseBackgroundWorker.cs" />
+    <Compile Include="Models\BaseViewData.cs" />
+    <Compile Include="Models\MessageViewData.cs" />
+    <Compile Include="Models\MyEventArgs\BoolEventArgs.cs" />
     <Compile Include="Models\MyEventArgs\CardEventArgs.cs" />
-    <Compile Include="Models\MyEventArgs\CardNumberEventArgs.cs" />
+    <Compile Include="Models\MyEventArgs\CardsStatusesEventArgs.cs" />
+    <Compile Include="Models\MyEventArgs\CharityEventArgs.cs" />
+    <Compile Include="Models\MyEventArgs\DoubleEventArgs.cs" />
+    <Compile Include="Models\MyEventArgs\NumberEventArgs.cs" />
     <Compile Include="Models\MyEventArgs\DigitEventArgs.cs" />
+    <Compile Include="Models\MyEventArgs\SendingMoneyEventArgs.cs" />
+    <Compile Include="Models\MyEventArgs\StringEventArgs.cs" />
+    <Compile Include="Models\ViewsFuncionalityMessageCollection.cs" />
+    <Compile Include="Models\ViewsFunctionalityMessages.cs" />
+    <Compile Include="Presenters\BaseEnterNumberPresenter.cs" />
+    <Compile Include="Presenters\BasePersonalAreaPresenter.cs" />
+    <Compile Include="Presenters\BlockCardPresenter.cs" />
+    <Compile Include="Presenters\CardOperationsPresenter.cs" />
+    <Compile Include="Presenters\ChangePinPresenter.cs" />
+    <Compile Include="Presenters\CharityPresenter.cs" />
     <Compile Include="Presenters\EnterCardNumberPresenter.cs" />
+    <Compile Include="Presenters\EnterKeyNumberPresenter.cs" />
+    <Compile Include="Presenters\EnterMoneySumNumberPresenter.cs" />
+    <Compile Include="Presenters\EnterPinNumberPresenter.cs" />
+    <Compile Include="Presenters\EnterTelephoneNumberPresenter.cs" />
+    <Compile Include="Presenters\GetMoneyNumberPresenter.cs" />
+    <Compile Include="Presenters\GiveOutCardPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
+    <Compile Include="Presenters\PaymentsPresenter.cs" />
+    <Compile Include="Presenters\PersonalAreaPresenter.cs" />
+    <Compile Include="Presenters\ResultMessagePresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\BaseControl.cs">
@@ -72,17 +104,86 @@
     <Compile Include="Views\BaseControl.Designer.cs">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\BasePersonalAreaView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\BasePersonalAreaView.Designer.cs">
+      <DependentUpon>BasePersonalAreaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BlockCardView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\BlockCardView.Designer.cs">
+      <DependentUpon>BlockCardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CardOperationsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CardOperationsView.Designer.cs">
+      <DependentUpon>CardOperationsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CharityView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CharityView.Designer.cs">
+      <DependentUpon>CharityView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\EnterCardNumberView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\EnterCardNumberView.Designer.cs">
       <DependentUpon>EnterCardNumberView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\GiveOutCardView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\GiveOutCardView.Designer.cs">
+      <DependentUpon>GiveOutCardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImageMessageView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ImageMessageView.Designer.cs">
+      <DependentUpon>ImageMessageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InsertMoneyView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\InsertMoneyView.Designer.cs">
+      <DependentUpon>InsertMoneyView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\LoginView.Designer.cs">
       <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PaymentsView.Designer.cs">
+      <DependentUpon>PaymentsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonalAreaView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PersonalAreaView.Designer.cs">
+      <DependentUpon>PersonalAreaView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ResultMessageView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ResultMessageView.Designer.cs">
+      <DependentUpon>ResultMessageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransparentPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\WalletFormView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\WalletFormView.Designer.cs">
+      <DependentUpon>WalletFormView.cs</DependentUpon>
     </Compile>
     <Compile Include="WaitForm.cs">
       <SubType>Form</SubType>
@@ -93,6 +194,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MobilePhoneForm.resx">
+      <DependentUpon>MobilePhoneForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -101,26 +205,70 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\BaseControl.resx">
       <DependentUpon>BaseControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\BasePersonalAreaView.resx">
+      <DependentUpon>BasePersonalAreaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BlockCardView.resx">
+      <DependentUpon>BlockCardView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CardOperationsView.resx">
+      <DependentUpon>CardOperationsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CharityView.resx">
+      <DependentUpon>CharityView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\EnterCardNumberView.resx">
       <DependentUpon>EnterCardNumberView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GiveOutCardView.resx">
+      <DependentUpon>GiveOutCardView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ImageMessageView.resx">
+      <DependentUpon>ImageMessageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InsertMoneyView.resx">
+      <DependentUpon>InsertMoneyView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\LoginView.resx">
       <DependentUpon>LoginView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\PaymentsView.resx">
+      <DependentUpon>PaymentsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PersonalAreaView.resx">
+      <DependentUpon>PersonalAreaView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ResultMessageView.resx">
+      <DependentUpon>ResultMessageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WalletFormView.resx">
+      <DependentUpon>WalletFormView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitForm.resx">
       <DependentUpon>WaitForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Connected Services\BankomatLocalService\BankomatClient.BankomatLocalService.Cards.datasource">
+    <None Include="Connected Services\BankomatLocalService\BankomatClient.BankomatLocalService.BaseCard.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\BankomatLocalService\BankomatClient.BankomatLocalService.CheckCardNumberResponse.datasource">
+    <None Include="Connected Services\BankomatLocalService\BankomatClient.BankomatLocalService.BaseCardsLimits.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BankomatLocalService\BankomatClient.BankomatLocalService.CardsStatuses.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BankomatLocalService\BankomatClient.BankomatLocalService.Clients.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\BankomatLocalService\BankomatClient.BankomatLocalService.Phones.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\BankomatLocalService\BankomatService.wsdl" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -154,6 +302,45 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlackCard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueCard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GoldCard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blackCardTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueCardTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goldCardTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AI.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\penguins.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\squirrel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\atm.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\led_blinksgreen.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\led_blinksgreen %281%29.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
