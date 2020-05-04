@@ -11,7 +11,7 @@ using BankomatClient.Models.MyEventArgs;
 
 namespace BankomatClient.Views
 {
-    public interface IEnterCardNumberView : IBaseControl
+    public interface IEnterCardNumberView : IBasePersonalAreaView //IBaseControl
     {
         /// <summary>
         /// отправка номера карты на сервер
@@ -22,7 +22,7 @@ namespace BankomatClient.Views
         /// </summary>
         event EventHandler PressDigit;
         /// <summary>
-        /// подтвердить правильность написания номера карты
+        /// подтвердить правильность написания номера карты/телефона/проверочного кода
         /// </summary>
         event EventHandler CheckCardNumber;
         /// <summary>
@@ -30,11 +30,6 @@ namespace BankomatClient.Views
         /// </summary>
         /// <param name="cardNumber">номер карты</param>
         void ConfirmSending(string cardNumber);
-        /// <summary>
-        /// уведомление клиента о том, что он ввел неправильный номер карты
-        /// </summary>
-        /// <param name="message"></param>
-        void SendMessage(string message);
         /// <summary>
         /// нажатие на кнопку удалить
         /// </summary>
@@ -48,13 +43,12 @@ namespace BankomatClient.Views
         /// удаление последней цифры из номера карты
         /// </summary>
         void DelDigit();
-        
     }
-    public partial class EnterCardNumberView : BaseControl, IEnterCardNumberView
+    public partial class EnterCardNumberView : BasePersonalAreaView, IEnterCardNumberView
     {
         public EnterCardNumberView()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
 
         public event EventHandler CheckCardNumber;
@@ -64,23 +58,17 @@ namespace BankomatClient.Views
 
         private void EnterCardNumberView_Load(object sender, EventArgs e)
         {
-            labelPageName.Text = "Пополнение карты";
-            labelInstructions.Text = "Введите номер карты";
+            
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            CheckCardNumber?.Invoke(this, new CardNumberEventArgs(textBoxCardNumber.Text));
+            CheckCardNumber?.Invoke(this, new NumberEventArgs(textBoxCardNumber.Text));
         }
 
         public void ConfirmSending(string cardNumber)
         {
-            ConfirmNumber?.Invoke(this, new CardNumberEventArgs(cardNumber));
-        }
-
-        public void SendMessage(string message)
-        {
-            BaseSendMessage(message);
+            ConfirmNumber?.Invoke(this, new NumberEventArgs(cardNumber));
         }
 
         private void button0_Click(object sender, EventArgs e)
@@ -147,5 +135,6 @@ namespace BankomatClient.Views
         {
             textBoxCardNumber.Text = textBoxCardNumber.Text.Remove(textBoxCardNumber.Text.Length - 1);
         }
+
     }
 }

@@ -40,6 +40,7 @@ namespace BankomatClient.Views
         {
             labelPageName.Text = "Страница приветствия";
             labelInstructions.Text = "Вы може совершать операции с картой и без карты.";
+            labelDetails.Text = "";
         }
 
         private void buttonInsertCard_Click(object sender, EventArgs e)

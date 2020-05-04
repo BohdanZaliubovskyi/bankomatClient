@@ -33,12 +33,33 @@
             this.buttonGetCard = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // labelInstructions
+            // 
+            this.labelInstructions.Location = new System.Drawing.Point(188, 212);
+            // 
+            // labelPageName
+            // 
+            this.labelPageName.Location = new System.Drawing.Point(186, 132);
+            // 
+            // labelDetails
+            // 
+            this.labelDetails.Location = new System.Drawing.Point(188, 181);
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(189, 241);
+            // 
+            // buttonToStartPage
+            // 
+            this.buttonToStartPage.Location = new System.Drawing.Point(689, 132);
+            // 
             // buttonInsertCard
             // 
             this.buttonInsertCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonInsertCard.Location = new System.Drawing.Point(114, 204);
+            this.buttonInsertCard.Location = new System.Drawing.Point(220, 299);
+            this.buttonInsertCard.Margin = new System.Windows.Forms.Padding(4);
             this.buttonInsertCard.Name = "buttonInsertCard";
-            this.buttonInsertCard.Size = new System.Drawing.Size(190, 47);
+            this.buttonInsertCard.Size = new System.Drawing.Size(269, 58);
             this.buttonInsertCard.TabIndex = 2;
             this.buttonInsertCard.Text = "Вставить карту";
             this.buttonInsertCard.UseVisualStyleBackColor = true;
@@ -47,9 +68,10 @@
             // buttonAddCash
             // 
             this.buttonAddCash.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAddCash.Location = new System.Drawing.Point(367, 204);
+            this.buttonAddCash.Location = new System.Drawing.Point(219, 365);
+            this.buttonAddCash.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddCash.Name = "buttonAddCash";
-            this.buttonAddCash.Size = new System.Drawing.Size(190, 47);
+            this.buttonAddCash.Size = new System.Drawing.Size(269, 58);
             this.buttonAddCash.TabIndex = 2;
             this.buttonAddCash.Text = "Пополнить карту по номеру";
             this.buttonAddCash.UseVisualStyleBackColor = true;
@@ -58,9 +80,10 @@
             // buttonGetCard
             // 
             this.buttonGetCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonGetCard.Location = new System.Drawing.Point(290, 334);
+            this.buttonGetCard.Location = new System.Drawing.Point(220, 431);
+            this.buttonGetCard.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGetCard.Name = "buttonGetCard";
-            this.buttonGetCard.Size = new System.Drawing.Size(267, 28);
+            this.buttonGetCard.Size = new System.Drawing.Size(269, 55);
             this.buttonGetCard.TabIndex = 3;
             this.buttonGetCard.Text = "Получить карту";
             this.buttonGetCard.UseVisualStyleBackColor = true;
@@ -68,13 +91,19 @@
             // 
             // LoginView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonGetCard);
             this.Controls.Add(this.buttonAddCash);
             this.Controls.Add(this.buttonInsertCard);
+            this.Margin = new System.Windows.Forms.Padding(5);
+            this.MinimumSize = new System.Drawing.Size(1000, 760);
             this.Name = "LoginView";
             this.Load += new System.EventHandler(this.LoginView_Load);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.buttonToStartPage, 0);
+            this.Controls.SetChildIndex(this.labelDetails, 0);
+            this.Controls.SetChildIndex(this.labelNotifyMessage, 0);
             this.Controls.SetChildIndex(this.labelPageName, 0);
             this.Controls.SetChildIndex(this.labelInstructions, 0);
             this.Controls.SetChildIndex(this.buttonInsertCard, 0);
